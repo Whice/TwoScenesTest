@@ -1,22 +1,25 @@
-Shader "Unlit/CubeShader"
+Shader "Unlit/TransparentShader"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
         _Color ("Color", Color) = (1, 1, 1, 1)
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
+        ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            
+            #pragma shader_feature_local _ _ALPHATEST_ON _ALPHABLEND_ON _ALPHAPREMULTIPLY_ON
 
             #include "UnityCG.cginc"
+            
 
             struct appdata
             {
@@ -45,9 +48,7 @@ Shader "Unlit/CubeShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
-                return col * _Color;
+                return _Color;
             }
             ENDCG
         }
