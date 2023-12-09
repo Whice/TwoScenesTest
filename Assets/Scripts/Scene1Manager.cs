@@ -18,6 +18,11 @@ public class Scene1Manager : MonoBehaviour
         ui.SetDistance(distance);
         sphereManipulator.SetSpheresVisible(distance < HIDE_SPHERE_DISANCE);
     }
+    private void CheckPositions()
+    {
+        redCube.SetAnotherCubePosition(greenCube.transform.position);
+        greenCube.SetAnotherCubePosition(redCube.transform.position);
+    }
 
     private void Awake()
     {
@@ -33,6 +38,7 @@ public class Scene1Manager : MonoBehaviour
        greenCube.transform.localPosition = new Vector3(0, 2, -4);
 
         CheckDistance();
+        CheckPositions();
 
         playerInput = new PlayerInput();
     }
@@ -48,6 +54,7 @@ public class Scene1Manager : MonoBehaviour
             greenCube.PositionUpdate(greenCubeDirection);
 
             CheckDistance();
+            CheckPositions();
         }
     }
 }
