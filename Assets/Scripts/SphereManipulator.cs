@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class SphereCreator : MonoBehaviour
+public class SphereManipulator : MonoBehaviour
 {
     [SerializeField] private Material sphereMaterial = null;
     [SerializeField] private GameObject spherePrototype = null;
