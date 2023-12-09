@@ -10,7 +10,7 @@ public class SphereManipulator : MonoBehaviour
      private const int SPHERE_MAX_COUNT = 20;
 
     private GameObject[] spheres;
-    private void Awake()
+    public void OnCreate()
     {
         spheres = new GameObject[SPHERE_MAX_COUNT];
         float rad = ((360/ SPHERE_MAX_COUNT) * Mathf.PI) / 180;
