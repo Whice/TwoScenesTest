@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Scene1Manager : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class Scene1Manager : MonoBehaviour
 
     private PlayerInput playerInput;
     private const float HIDE_SPHERE_DISANCE = 2f;
+    private const float SCENE2_LOAD_DISANCE = 1f;
 
     private void CheckDistance()
     {
         float distance = Vector3.Distance(redCube.localPosition, greenCube.localPosition);
         ui.SetDistance(distance);
         sphereManipulator.SetSpheresVisible(distance < HIDE_SPHERE_DISANCE);
+
+        if (distance < SCENE2_LOAD_DISANCE)
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
     }
     private void CheckPositions()
     {
